@@ -1,0 +1,17 @@
+{
+  "name": "AngularClient",
+  "description": "Projeto para a exportação das issues do gitlab CE",
+  "main": "main.js",
+  "authors": [
+    "Nataniel Paiva"
+  ],
+  "license": "MIT",
+  "homepage": "https://gitlab-ce-export-to-csv.github.io/",
+  "dependencies": {
+    "angular": "~1.6.9",
+    "angular-route": "~1.6.9",
+    "angular-resource": "~1.6.9",
+    "bootstrap":"~3.3.7",
+    "ng-csv":"latest"
+  }
+}

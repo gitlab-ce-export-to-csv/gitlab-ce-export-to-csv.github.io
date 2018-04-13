@@ -1,0 +1,19 @@
+{
+  "name": "AngularClient",
+  "version": "1.0.0",
+  "description": "Projeto de AngularJS que consome Json de um sistema em Laravel",
+  "main": "main.js",
+  "devDependencies": {
+    "bower": "^1.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/github.com/seunome.git"
+  },
+  "author": "Nataniel Paiva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/github.com/seunome/issues"
+  },
+  "homepage": "https://github.com/github.com/seunome#readme"
+}

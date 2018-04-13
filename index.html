@@ -1,1 +1,24 @@
-teste
+  <html ng-app="export-to-csv">
+  <head>
+    <meta charset="utf-8">
+    <title>Export Issues GitLab CE to CSV</title>
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  </head>
+  <body>
+
+    <div class="container">
+     
+
+      <ng-view></ng-view>
+    </div>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/ng-csv/build/ng-csv.min.js"></script>
+    <script src="main.js"></script>
+    <script src="controllers/index-controller.js"></script>
+    <script src="services/my-service.js"></script>
+
+  </body>
+  </html>
