@@ -10,12 +10,6 @@ angular.module('export-to-csv.index', ['ngRoute'])
         $scope.issues = [];
         $scope.load = false;
 
-
-        MyService.get().then(function (response) {
-            $scope.groups = response.data;
-            console.log($scope.groups);
-        });
-
         $scope.$watch('user.token', function (newValue) {
             if (newValue && newValue != "") {
                 if (newValue.length > 15) {
