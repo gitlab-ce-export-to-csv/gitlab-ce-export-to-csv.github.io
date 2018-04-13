@@ -27,6 +27,7 @@ angular.module('export-to-csv.index', ['ngRoute'])
         $scope.$watch('groupsToExport', function (newValue) {
             if (newValue && newValue != "") {
                 $scope.load = true;
+                $scope.exportButton = false;
                 $scope.getAllIssues(newValue);
             }
         });
