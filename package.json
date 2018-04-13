@@ -1,19 +1,19 @@
 {
-  "name": "AngularClient",
+  "name": "Gitlab Export Issues",
   "version": "1.0.0",
-  "description": "Projeto de AngularJS que consome Json de um sistema em Laravel",
+  "description": "Project for export issues of gitlab to CSV",
   "main": "main.js",
   "devDependencies": {
     "bower": "^1.7.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/github.com/seunome.git"
+    "url": "git+https://github.com/gitlab-ce-export-to-csv/gitlab-ce-export-to-csv.github.io"
   },
   "author": "Nataniel Paiva",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/github.com/seunome/issues"
+    "url": "https://github.com/gitlab-ce-export-to-csv/gitlab-ce-export-to-csv.github.io/issues"
   },
-  "homepage": "https://github.com/github.com/seunome#readme"
+  "homepage": "https://gitlab-ce-export-to-csv.github.io"
 }

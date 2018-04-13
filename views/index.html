@@ -7,7 +7,7 @@
 		<label for="token">Your New Personal Access Token</label>
 		<input type="text" class="form-control" ng-model="user.token" placeholder="Token">
 	</div>
-	<div class="form-group col-xs-12 col-md-6">
+	<div class="form-group col-xs-12 col-md-12">
 		<label for="Group">Group</label>
 		<select ng-model="groupsToExport" ng-options="group.id as group.name for group in groups">
 			<option value="">Select Group</option>
@@ -15,12 +15,14 @@
 	</div>
 	<div ng-if="message" class="form-group col-xs-12 col-md-12 alert alert-danger alert-dismissible">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-		<strong >Problem! Verify your credentials</strong> {{message}}.
+		<strong>Problem! Verify your credentials</strong> {{message}}.
 	</div>
-	<div class="form-group col-xs-12 col-md-6" ng-if="load">
+	<div class="form-group col-xs-12 col-md-12" ng-if="load">
 		<img width="300px" src="tenor.gif" />
 	</div>
-
-	<button ng-if="exportButton" type="button" ng-csv="getArray()" csv-header="['Title', 'Description', 'State', 'CreateAt', 'UpdateAt', 'ClosedAt', 'Labels', 'Author Name', 'Author Username', 'Assignee Name', 'Assignee Username', 'Duo Date']"
-	 filename="Reporter.csv" class="btn btn-default">Export to CSV</button>
+	<div class="form-group col-xs-3 col-md-3">
+		<button ng-if="exportButton" type="button" ng-csv="getArray()" csv-header="['Title', 'Description', 'State', 'CreateAt', 'UpdateAt', 'ClosedAt', 'Labels', 'Author Name', 'Author Username', 'Assignee Name', 'Assignee Username', 'Duo Date']"
+		 filename="Reporter.csv" class="btn btn-default">
+			<span class="glyphicon glyphicon-download-alt"></span> Export to CSV</button>
+	</div>
 </form>
