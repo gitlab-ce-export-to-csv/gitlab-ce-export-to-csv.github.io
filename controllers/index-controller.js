@@ -42,7 +42,7 @@ angular.module('export-to-csv.index', ['ngRoute'])
         $scope.getGroups = function () {
             MyService.get($scope.user.token, $scope.user.url).then(function (response) {
                 $scope.groups = response.data;
-            });
+            }, function(error){ $scope.message = error.data.message});
         }
 
         $scope.getArray = function () {
