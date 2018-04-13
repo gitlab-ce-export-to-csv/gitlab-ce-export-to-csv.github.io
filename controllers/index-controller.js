@@ -18,11 +18,26 @@ angular.module('export-to-csv.index', ['ngRoute'])
             }
         });
 
-        $scope.$watch('groupsToExport', function (newValue) {
-            if (newValue && newValue != "") {
+
+        $scope.$watch('state', function (newValue) {
+            if (newValue && newValue != "" && $scope.groupsToExport && $scope.groupsToExport != "") {
                 $scope.load = true;
                 $scope.exportButton = false;
-                $scope.getAllIssues(newValue);
+                switch (newValue) {
+                    case "all":
+                        $scope.issues = [];
+                        $scope.getAllIssues($scope.groupsToExport);
+                        break;
+                    case "opened":
+                        $scope.issues = [];
+                        $scope.getOpenedIssues($scope.groupsToExport);
+                        break;
+                    case "closed":
+                        $scope.issues = [];
+                        $scope.getClosedIssues($scope.groupsToExport);
+                        break;
+
+                }
             }
         });
 
@@ -39,10 +54,36 @@ angular.module('export-to-csv.index', ['ngRoute'])
             });
         }
 
+        $scope.getOpenedIssues = function (newValue, page = 1) {
+            MyService.getOpenedIssues($scope.user.token, newValue, page, $scope.user.url).then(function (response) {
+                $scope.issues = $scope.issues.concat(response.data);
+                var nextPage = response.headers('x-next-page');
+                if (nextPage != "") {
+                    $scope.getOpenedIssues(newValue, nextPage);
+                } else {
+                    $scope.exportButton = true;
+                    $scope.load = false;
+                }
+            });
+        }
+
+        $scope.getClosedIssues = function (newValue, page = 1) {
+            MyService.getClosedIssues($scope.user.token, newValue, page, $scope.user.url).then(function (response) {
+                $scope.issues = $scope.issues.concat(response.data);
+                var nextPage = response.headers('x-next-page');
+                if (nextPage != "") {
+                    $scope.getClosedIssues(newValue, nextPage);
+                } else {
+                    $scope.exportButton = true;
+                    $scope.load = false;
+                }
+            });
+        }
+
         $scope.getGroups = function () {
             MyService.get($scope.user.token, $scope.user.url).then(function (response) {
                 $scope.groups = response.data;
-            }, function(error){ $scope.message = error.data.message});
+            }, function (error) { $scope.message = error.data.message });
         }
 
         $scope.getArray = function () {
