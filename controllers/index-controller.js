@@ -104,9 +104,13 @@ angular.module('export-to-csv.index', ['ngRoute'])
                     assigneeName = d[i].assignee.name;
                     assigneeUserName = d[i].assignee.username;
                 }
+                var milestoneTitle = "";
+                if (d[i].milestone) {
+                    milestoneTitle = d[i].milestone.title;
+                }
 
                 myArr.push([d[i].title, d[i].description, d[i].state, d[i].created_at, d[i].updated_at, d[i].closed_at, labels,
-                d[i].author.name, d[i].author.username, assigneeName, assigneeUserName, d[i].duo_date]);
+                d[i].author.name, d[i].author.username, assigneeName, assigneeUserName, milestoneTitle, d[i].duo_date]);
             }
 
             return myArr;
