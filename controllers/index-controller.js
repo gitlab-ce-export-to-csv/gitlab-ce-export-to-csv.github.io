@@ -110,7 +110,7 @@ angular.module('export-to-csv.index', ['ngRoute'])
                 }
 
                 myArr.push([d[i].title, d[i].description, d[i].state, d[i].created_at, d[i].updated_at, d[i].closed_at, labels,
-                d[i].author.name, d[i].author.username, assigneeName, assigneeUserName, milestoneTitle, d[i].duo_date]);
+                d[i].author.name, d[i].author.username, assigneeName, assigneeUserName, milestoneTitle, d[i].iid, d[i].duo_date]);
             }
 
             return myArr;
