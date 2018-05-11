@@ -43,7 +43,7 @@
 	</div>
 	<div class="form-group col-xs-3 col-md-3">
 		<button ng-if="!load"  type="button" ng-click="searchData()" class="btn btn-default">
-			<span class="glyphicon glyphicon-download-alt"></span> Search data</button>
+			<span class="glyphicon glyphicon-search"></span> Search data</button>
 	</div>
 	<div class="form-group col-xs-3 col-md-3">
 		<button ng-if="exportButton" type="button" ng-csv="getArray()" csv-header="['Title', 'Description', 'State', 'CreateAt', 'UpdateAt', 'ClosedAt', 'Labels', 'Author Name', 'Author Username', 'Assignee Name', 'Assignee Username', 'Milestone', 'IdIssue', 'Duo Date']"
