@@ -87,6 +87,11 @@ angular.module('export-to-csv.index', ['ngRoute'])
                     }
                     break;
 
+                default:
+                    $scope.load = false;
+                    $scope.exportButton = false;
+                    break;
+
             }
         };
 
