@@ -9,6 +9,7 @@ angular.module('export-to-csv.index', ['ngRoute'])
         $scope.exportButton = false;
         $scope.issues = [];
         $scope.load = false;
+        $scope.milestone = "";
 
         $scope.$watch('user.token', function (newValue) {
             if (newValue && newValue != "") {
@@ -26,15 +27,29 @@ angular.module('export-to-csv.index', ['ngRoute'])
                 switch (newValue) {
                     case "all":
                         $scope.issues = [];
-                        $scope.getAllIssues($scope.groupsToExport);
+                        if($scope.milestone === ""){
+                            $scope.getAllIssues($scope.groupsToExport);
+                        }else{
+                            $scope.getAllIssuesWithMilestone($scope.groupsToExport);
+                        }
+                        
                         break;
                     case "opened":
                         $scope.issues = [];
-                        $scope.getOpenedIssues($scope.groupsToExport);
+                        if($scope.milestone === ""){
+                            $scope.getOpenedIssues($scope.groupsToExport);
+                        }else{
+                            $scope.getOpenedIssuesWithMilestone($scope.groupsToExport);
+                        }
+                        
                         break;
                     case "closed":
                         $scope.issues = [];
-                        $scope.getClosedIssues($scope.groupsToExport);
+                        if($scope.milestone === ""){
+                            $scope.getClosedIssues($scope.groupsToExport);
+                        }else{
+                            $scope.getClosedIssuesWithMilestone($scope.groupsToExport);
+                        }
                         break;
 
                 }
@@ -73,6 +88,45 @@ angular.module('export-to-csv.index', ['ngRoute'])
                 var nextPage = response.headers('x-next-page');
                 if (nextPage != "") {
                     $scope.getClosedIssues(newValue, nextPage);
+                } else {
+                    $scope.exportButton = true;
+                    $scope.load = false;
+                }
+            });
+        }
+
+        $scope.getAllIssuesWithMilestone = function (newValue, page = 1) {
+            MyService.getAllIssuesWithMilestone($scope.user.token, newValue, page, $scope.user.url, $scope.milestone).then(function (response) {
+                $scope.issues = $scope.issues.concat(response.data);
+                var nextPage = response.headers('x-next-page');
+                if (nextPage != "") {
+                    $scope.getAllIssuesWithMilestone(newValue, nextPage);
+                } else {
+                    $scope.exportButton = true;
+                    $scope.load = false;
+                }
+            });
+        }
+
+        $scope.getOpenedIssuesWithMilestone = function (newValue, page = 1) {
+            MyService.getOpenedIssuesWithMilestone($scope.user.token, newValue, page, $scope.user.url, $scope.milestone).then(function (response) {
+                $scope.issues = $scope.issues.concat(response.data);
+                var nextPage = response.headers('x-next-page');
+                if (nextPage != "") {
+                    $scope.getOpenedIssuesWithMilestone(newValue, nextPage);
+                } else {
+                    $scope.exportButton = true;
+                    $scope.load = false;
+                }
+            });
+        }
+
+        $scope.getClosedIssuesWithMilestone = function (newValue, page = 1) {
+            MyService.getClosedIssuesWithMilestone($scope.user.token, newValue, page, $scope.user.url, $scope.milestone).then(function (response) {
+                $scope.issues = $scope.issues.concat(response.data);
+                var nextPage = response.headers('x-next-page');
+                if (nextPage != "") {
+                    $scope.getClosedIssuesWithMilestone(newValue, nextPage);
                 } else {
                     $scope.exportButton = true;
                     $scope.load = false;
