@@ -27,27 +27,27 @@ angular.module('export-to-csv.index', ['ngRoute'])
                 switch (newValue) {
                     case "all":
                         $scope.issues = [];
-                        if($scope.milestone === ""){
+                        if ($scope.milestone === "") {
                             $scope.getAllIssues($scope.groupsToExport);
-                        }else{
+                        } else {
                             $scope.getAllIssuesWithMilestone($scope.groupsToExport);
                         }
-                        
+
                         break;
                     case "opened":
                         $scope.issues = [];
-                        if($scope.milestone === ""){
+                        if ($scope.milestone === "") {
                             $scope.getOpenedIssues($scope.groupsToExport);
-                        }else{
+                        } else {
                             $scope.getOpenedIssuesWithMilestone($scope.groupsToExport);
                         }
-                        
+
                         break;
                     case "closed":
                         $scope.issues = [];
-                        if($scope.milestone === ""){
+                        if ($scope.milestone === "") {
                             $scope.getClosedIssues($scope.groupsToExport);
-                        }else{
+                        } else {
                             $scope.getClosedIssuesWithMilestone($scope.groupsToExport);
                         }
                         break;
@@ -55,6 +55,40 @@ angular.module('export-to-csv.index', ['ngRoute'])
                 }
             }
         });
+
+        $scope.searchData = function () {
+            $scope.load = true;
+            $scope.exportButton = false;
+            switch ($scope.state) {
+                case "all":
+                    $scope.issues = [];
+                    if ($scope.milestone === "") {
+                        $scope.getAllIssues($scope.groupsToExport);
+                    } else {
+                        $scope.getAllIssuesWithMilestone($scope.groupsToExport);
+                    }
+
+                    break;
+                case "opened":
+                    $scope.issues = [];
+                    if ($scope.milestone === "") {
+                        $scope.getOpenedIssues($scope.groupsToExport);
+                    } else {
+                        $scope.getOpenedIssuesWithMilestone($scope.groupsToExport);
+                    }
+
+                    break;
+                case "closed":
+                    $scope.issues = [];
+                    if ($scope.milestone === "") {
+                        $scope.getClosedIssues($scope.groupsToExport);
+                    } else {
+                        $scope.getClosedIssuesWithMilestone($scope.groupsToExport);
+                    }
+                    break;
+
+            }
+        };
 
         $scope.getAllIssues = function (newValue, page = 1) {
             MyService.getAllIssues($scope.user.token, newValue, page, $scope.user.url).then(function (response) {
