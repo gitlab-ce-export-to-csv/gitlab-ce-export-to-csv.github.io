@@ -4,7 +4,7 @@ service('MyService', ['$http', function($http) {
 
      this.get = function(token, url){
         url = url || urlGlobal;
-        return $http.get(url + "/api/v4/groups", { headers: {
+        return $http.get(url + "/api/v4/groups?per_page=100", { headers: {
             'PRIVATE-TOKEN': token
           }});
      };
